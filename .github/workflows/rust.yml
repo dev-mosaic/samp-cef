@@ -132,7 +132,7 @@ jobs:
     - name: Download CEF static library
       if: steps.cef-cache.outputs.cache-hit != 'true'
       run: |
-        curl -L https://github.com/ZOTTCE/samp-cef/releases/download/v1.1-beta/libcef.lib -o libcef.lib
+        curl -L https://github.com/dev-mosaic/samp-cef/releases/download/v1.1-beta/libcef.lib -o libcef.lib
         mkdir $CEF_PATH
         mv libcef.lib $CEF_PATH/libcef.lib
       shell: bash
@@ -151,7 +151,7 @@ jobs:
     - name: Make a package
       run: |
         mkdir redist && cd redist
-        curl -L https://github.com/ZOTTCE/samp-cef/releases/download/v1.1-beta/cef.zip -o cef_redist.zip
+        curl -L https://github.com/dev-mosaic/samp-cef/releases/download/v1.1-beta/cef.zip -o cef_redist.zip
         7z x cef_redist.zip -ocef
         cp ../target/release/client.dll cef/client.dll
         cp ../target/release/renderer.exe cef/renderer.exe
