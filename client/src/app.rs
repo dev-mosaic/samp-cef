@@ -266,7 +266,7 @@ pub fn initialize() {
         APP = Some(app);
     }
 
-    if client_api::samp::version::is_unknown_version() {
+    /*if client_api::samp::version::is_unknown_version() {
         log::error!("unknown samp version, version {}", client_api::samp::version::get_version());
 
         client_api::utils::error_message_box(
@@ -275,7 +275,7 @@ pub fn initialize() {
             );
 
         // don't waste time
-    }
+    }*/
 }
 
 pub fn uninitialize() {
