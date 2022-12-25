@@ -21,7 +21,7 @@ crossbeam-channel = "0.5.1"
 winapi = { version = "0.3.8", features = ["d3d9", "winuser", "libloaderapi", "winver", "consoleapi", "memoryapi", "shlobj"] }
 messages = { path = "../messages" }
 quick-protobuf = "0.8.0"
-detour = { git = "https://github.com/darfink/detour-rs", rev = "3b6f17a" }
+detour = { git = "https://github.com/darfink/detour-rs", rev = "3b6f17a", version = "0.8.0", default-features = false }
 libloading = "0.7.0"
 alto = "3.0.4"
 log = "0.4.14"
