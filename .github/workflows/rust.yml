@@ -76,6 +76,8 @@ jobs:
     steps:
     - name: Install i386 deps
       run: |
+        apt-get update
+        apt-get upgrade
         dpkg --add-architecture i386 
         apt-get update
         apt-get install lib32z1
@@ -152,8 +154,8 @@ jobs:
     - name: Make a package
       run: |
         mkdir redist && cd redist
-        curl -L https://github.com/dev-mosaic/samp-cef/releases/download/v1.1-beta/cef.zip -o cef_redist.zip
-        7z x cef_redist.zip -ocef
+        curl -L https://github.com/dev-mosaic/samp-cef/releases/download/v1.1-beta/cef.zip -o cef.zip
+        7z x cef.zip -ocef
         cp ../target/release/client.dll cef/client.dll
         cp ../target/release/renderer.exe cef/renderer.exe
         cp ../target/release/loader.dll cef.asi
