@@ -11,61 +11,6 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_server_ubuntu:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
-
-    steps:
-    - name: Install nightly rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: nightly-i686-unknown-linux-gnu
-        override: true
-    
-    - name: Install i386 deps
-      run: |
-        sudo dpkg --add-architecture i386 
-        sudo apt-get update 
-        sudo apt-get install build-essential g++-multilib -y
-
-    - uses: actions/checkout@v2
-    - name: Build server plugin
-      run: |
-        cargo build --package server --release
-        strip -s target/release/libserver.so -o stripped.so
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: cef-${{ matrix.os }}.so
-        path: stripped.so
-
-  build_server_centos:
-    runs-on: ubuntu-latest
-    container: centos:7.5.1804
-
-    steps:
-    - name: Install i386 deps
-      run: yum install git curl gcc g++ dpkg-dev make libgcc libgcc.i686 glibc-devel.i686 zlib.i686 zlib -y
-
-    - name: Install nightly rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: nightly-i686-unknown-linux-gnu
-        override: true
-
-    - uses: actions/checkout@v2
-    - name: Build server plugin
-      run: |
-        cargo build --package server --release
-        strip -s target/release/libserver.so -o stripped.so
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: cef-centos-7.so
-        path: stripped.so
-
   build_server_debian:
     runs-on: ubuntu-latest
     container: debian:${{ matrix.os }}
@@ -76,11 +21,11 @@ jobs:
     steps:
     - name: Install i386 deps
       run: |
-        apt-get update
-        apt-get upgrade
+        apt-get -qq update
+        apt-get -y upgrade
         dpkg --add-architecture i386 
-        apt-get update
-        apt-get install lib32z1
+        apt-get -y update
+        apt-get install lib32z1 -y
         apt-get install build-essential curl make g++-multilib -y
 
     - name: Install nightly rust
