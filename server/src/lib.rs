@@ -20,7 +20,7 @@ mod utils;
 use crate::server::Server;
 
 const INIT_TIMEOUT: Duration = Duration::from_secs(5);
-const PORT_OFFSET: u16 = 4;
+const PORT_OFFSET: u16 = 2;
 
 pub enum Event {
     EmitEvent {
