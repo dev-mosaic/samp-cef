@@ -78,6 +78,7 @@ jobs:
       run: |
         dpkg --add-architecture i386 
         apt-get update
+        apt-get install lib32z1
         apt-get install build-essential curl make g++-multilib -y
 
     - name: Install nightly rust
