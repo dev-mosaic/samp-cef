@@ -267,7 +267,7 @@ pub fn initialize() {
     }
 
     if client_api::samp::version::is_unknown_version() {
-        log::error!("unknown samp version");
+        log::error!("unknown samp version, version {}", client_api::samp::version::get_version());
 
         client_api::utils::error_message_box(
                 "Unsupported SA:MP",
