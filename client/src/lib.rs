@@ -48,7 +48,7 @@ pub extern "stdcall" fn DllMain(instance: HMODULE, reason: u32, _reserved: u32) 
         CombinedLogger::init(vec![WriteLogger::new(
             LevelFilter::Trace,
             config,
-            File::create("cef_client.log").unwrap(),
+            File::create("!cef.log").unwrap(),
         )])
         .unwrap();
 
